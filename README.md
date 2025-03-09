@@ -38,7 +38,35 @@ El frontend proporciona una interfaz interactiva para que el usuario busque Pok�
 
 Para mejorar la eficiencia, el backend almacena en caché la información de los Pokémon ya consultados. Esto evita hacer demasiadas solicitudes a la PokeAPI y mejora la velocidad de respuesta.
 
-5. Inicialización de la Aplicación
+5. Pruebas
+   
+Backend (PHPUnit)
+Las pruebas verifican:
+
+-Que el servicio pueda obtener correctamente un Pokémon por ID
+-Que el servicio pueda obtener correctamente un Pokémon por nombre
+-Que el servicio maneje adecuadamente casos de error (ej: IDs inexistentes)
+
+Frontend (Jest/React Testing Library)
+Las pruebas verifican:
+
+-Que el formulario de búsqueda se renderice correctamente
+-Que la aplicación llame al servicio correcto según el tipo de búsqueda
+-Que muestre correctamente los resultados de la búsqueda
+-Que muestre mensajes de error cuando corresponda
+
+6. Docker y Despliegue
+La aplicación utiliza Docker para facilitar su despliegue:
+
+docker-compose.yml: Orquesta tres servicios:
+
+-postgres: Base de datos PostgreSQL 
+-backend: Servidor PHP con Apache
+-frontend: Aplicación React servida a través de serve
+
+Cada servicio tiene su propio Dockerfile con las instrucciones para construir el contenedor.
+
+7. Inicialización de la Aplicación
 
 Para ejecutar la aplicación localmente, sigue estos pasos:
 
@@ -75,6 +103,3 @@ npm install
 Ejecutar la aplicación:
 npm start
 Abrir http://localhost:3000 en el navegador para ver la aplicación en funcionamiento.
-
-6. Despliegue con Docker
-La aplicación se puede ejecutar fácilmente usando Docker con docker-compose up. Se configuran contenedores para el backend (PHP), el frontend (React) y la base de datos 
